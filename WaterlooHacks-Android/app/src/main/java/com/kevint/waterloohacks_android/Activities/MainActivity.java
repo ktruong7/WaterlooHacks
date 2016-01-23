@@ -51,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void openProfile(){
+
+    }
+
+    public void openSettings(){
+
+    }
+
     public void populateOfferList() {
         Offer offer1 = new Offer("Apple sale", "Pick up apples for $1 each.", 1);
         Offer offer2 = new Offer("Cereal sale", "Grab two 900g cereal boxes for $5", 2);

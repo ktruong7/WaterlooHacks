@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -9,7 +9,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent" android:layout_height="50dip"
         android:background="@color/blue"
-        >
+        android:id="@+id/relativeLayout">
 
         <Button
             android:id="@+id/btn_settings"
@@ -29,22 +29,12 @@
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recent store offers"
-        android:id="@+id/page_title"
-        android:textSize="20sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/page_title"
-        android:layout_marginTop="10dp">
+        android:layout_below="@+id/relativeLayout">
 
         <ListView
             android:layout_width="match_parent"
@@ -54,4 +44,4 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>
