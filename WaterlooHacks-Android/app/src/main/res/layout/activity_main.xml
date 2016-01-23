@@ -8,25 +8,27 @@
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent" android:layout_height="50dip"
-        android:background="@color/blue"
         android:id="@+id/relativeLayout">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_settings"
-            android:layout_width="wrap_content" android:layout_height="fill_parent"
-            android:text="S"
-            android:layout_alignParentLeft="true"/>
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:src="@drawable/glyphicons137cogwheel"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/settings" />
         <TextView
             android:text="@string/lblTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/tv_timer"/>
-        <Button
-            android:id="@+id/btn_profile"
-            android:layout_width="wrap_content" android:layout_height="fill_parent"
-            android:text="P"
-            android:layout_alignParentRight="true"/>
+            android:id="@+id/tv_title"
+            android:layout_centerInParent="true" />
+        <ImageButton
+            android:id="@+id/btn_profile1"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:src="@drawable/glyphicons4user"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/profile" />
     </RelativeLayout>
 
     <LinearLayout

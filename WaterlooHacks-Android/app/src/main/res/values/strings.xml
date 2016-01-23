@@ -3,5 +3,7 @@
 
     <string name="bluetooth_store_beacon">Bluetooth Store Beacon</string>
     <string name="action_settings">Settings</string>
-    <string name="lblTitle">Bluetooth Beacon</string>
+    <string name="lblTitle">Bluetooth</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
 </resources>
