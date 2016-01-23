@@ -1,11 +1,15 @@
 package com.kevint.waterloohacks_android.Activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.kevint.waterloohacks_android.Adapters.OffersListAdapter;
@@ -15,6 +19,7 @@ import com.kevint.waterloohacks_android.R;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private Context context;
 
     private ListView offersListView;
     private OffersListAdapter offersListAdapter;
@@ -23,13 +28,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        context = this;
         setContentView(R.layout.activity_main);
         offersListView = (ListView) findViewById(R.id.offers_list);
         populateOfferList();
         offersListAdapter = new OffersListAdapter(this, android.R.layout.simple_list_item_1, offers);
         offersListView.setAdapter(offersListAdapter);
-
+        Button shoppingListButton = (Button) findViewById(R.id.shopping_list_button);
+        shoppingListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ShoppingListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
