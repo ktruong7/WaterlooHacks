@@ -21,6 +21,13 @@
         <activity
             android:name=".Activities.BluetoothBeaconActivity"
             android:label="@string/title_activity_bluetooth_beacon" >
+            <receiver android:name="messageReceiver">
+                <intent-filter>
+                    <action android:name="com.intent.MESSAGE_INTENT">
+                    </action>
+                </intent-filter>
+
+            </receiver>
         </activity>
     </application>
 
