@@ -11,11 +11,21 @@ public class Offer {
     private int valid_hours;
     private Bitmap offerImage;
 
+    /*
+
+     */
     public Offer(String name, String description, int validHours, Bitmap offerImage) {
         offer_name = name;
         offer_description = description;
         valid_hours = validHours;
         this.offerImage = offerImage;
+    }
+
+    public Offer(String name, String description, int validHours, int offerImageID) {
+        offer_name = name;
+        offer_description = description;
+        valid_hours = validHours;
+        this.offerImage = getImageByID(offerImageID);
     }
 
     public String getOfferName() {
@@ -32,5 +42,10 @@ public class Offer {
 
     public Bitmap getOfferImage() {
         return offerImage;
+    }
+
+    public Bitmap getImageByID(int id)
+    {
+        return null;
     }
 }
