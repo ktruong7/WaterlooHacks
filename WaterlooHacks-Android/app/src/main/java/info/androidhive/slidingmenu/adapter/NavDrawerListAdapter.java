@@ -73,6 +73,7 @@ public class NavDrawerListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = navDrawerItems.get(position).getIntent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                broadcastIntent();
                 context.startActivity(intent);
             }
         });
@@ -80,4 +81,9 @@ public class NavDrawerListAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void broadcastIntent() {
+        Intent intent = new Intent();
+        intent.setAction("com.intent.CLOSE_DRAWER");
+        context.sendBroadcast(intent);
+    }
 }
