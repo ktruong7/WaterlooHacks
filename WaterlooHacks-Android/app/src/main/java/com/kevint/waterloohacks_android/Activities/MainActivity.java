@@ -1,16 +1,23 @@
-package com.kevint.waterloohacks_android;
+package com.kevint.waterloohacks_android.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.kevint.waterloohacks_android.R;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListView offers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        offers = (ListView) findViewById(R.id.offers_list);
     }
 
     @Override
