@@ -11,11 +11,9 @@
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
         <item >Home</item>
-        <item >Find People</item>
-        <item >Photos</item>
-        <item >Communities</item>
-        <item >Pages</item>
-        <item >What\'s Hot</item>
+        <item >Profile</item>
+        <item >Shopping List</item>
+        <item >Settings</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -23,9 +21,7 @@
     <array name="nav_drawer_icons">
         <item>@drawable/glyphicons21home</item>
         <item>@drawable/glyphicons4user</item>
-        <item>@drawable/glyphicons12camera</item>
-        <item>@drawable/glyphicons44group</item>
-        <item>@drawable/glyphicons685article</item>
-        <item>@drawable/glyphicons23fire</item>
+        <item>@drawable/glyphicons203shoppingcart</item>
+        <item>@drawable/glyphicons137cogwheel</item>
     </array>
 </resources>
