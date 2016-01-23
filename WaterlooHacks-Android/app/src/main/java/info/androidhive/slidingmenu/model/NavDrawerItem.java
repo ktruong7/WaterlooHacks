@@ -1,5 +1,7 @@
 package info.androidhive.slidingmenu.model;
 
+import android.content.Intent;
+
 /**
  * Created by chungzheng on 1/23/2016.
  */
@@ -11,12 +13,14 @@ public class NavDrawerItem {
     private String count = "0";
     // boolean to set visiblity of the counter
     private boolean isCounterVisible = false;
+    private Intent intent;
 
     public NavDrawerItem(){}
 
-    public NavDrawerItem(String title, int icon){
+    public NavDrawerItem(String title, int icon, Intent intent){
         this.title = title;
         this.icon = icon;
+        this.intent = intent;
     }
 
     public NavDrawerItem(String title, int icon, boolean isCounterVisible, String count){
@@ -56,5 +60,9 @@ public class NavDrawerItem {
 
     public void setCounterVisibility(boolean isCounterVisible){
         this.isCounterVisible = isCounterVisible;
+    }
+
+    public Intent getIntent() {
+        return intent;
     }
 }
