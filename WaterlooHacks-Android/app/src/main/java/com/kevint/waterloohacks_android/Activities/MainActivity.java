@@ -1,11 +1,16 @@
 package com.kevint.waterloohacks_android.Activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.kevint.waterloohacks_android.Adapters.OffersListAdapter;
@@ -19,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView offersListView;
     private OffersListAdapter offersListAdapter;
     private ArrayList<Offer> offers;
+    private Button bluetoothTestButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         populateOfferList();
         offersListAdapter = new OffersListAdapter(this, android.R.layout.simple_list_item_1, offers);
         offersListView.setAdapter(offersListAdapter);
-
+        bluetoothTestButton = (Button) findViewById(R.id.bluetooth_test_button);
+        setUpBluetoothTestButton(this);
     }
 
     @Override
@@ -62,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void populateOfferList() {
+    private void populateOfferList() {
         Bitmap offerImage1 = BitmapFactory.decodeResource(getResources(), R.drawable.apples);
         Bitmap offerImage2 = BitmapFactory.decodeResource(getResources(), R.drawable.cereal);
         Bitmap offerImage3 = BitmapFactory.decodeResource(getResources(), R.drawable.tilapia);
@@ -73,5 +80,15 @@ public class MainActivity extends AppCompatActivity {
         offers.add(offer1);
         offers.add(offer2);
         offers.add(offer3);
+    }
+
+    private void setUpBluetoothTestButton(final Context context) {
+        bluetoothTestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, BluetoothBeaconActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
