@@ -30,6 +30,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_list);
         context = this;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Shopping List");
         initializeComponents();
         setUpButtons();
         setUpListView();
@@ -48,7 +49,6 @@ public class ShoppingListActivity extends AppCompatActivity {
 
     private void initializeComponents() {
         addButton = (ImageButton) findViewById(R.id.add_button);
-        backButton = (ImageButton) findViewById(R.id.back_button);
         clearButton = (Button) findViewById(R.id.clear_button);
         shoppingListView = (ListView) findViewById(R.id.shopping_list);
     }
@@ -59,13 +59,6 @@ public class ShoppingListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(context, AddItemActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
 

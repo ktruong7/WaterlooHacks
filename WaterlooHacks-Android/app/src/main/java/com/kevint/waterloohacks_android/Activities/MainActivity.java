@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
 
     private ListView offersListView;
-    private OffersListAdapter offersListAdapter;
+    public static OffersListAdapter offersListAdapter;
     private ArrayList<Offer> offers;
 
     private DrawerLayout mDrawerLayout;
