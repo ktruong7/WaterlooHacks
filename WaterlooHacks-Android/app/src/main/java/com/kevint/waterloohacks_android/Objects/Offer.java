@@ -6,12 +6,12 @@ package com.kevint.waterloohacks_android.Objects;
 public class Offer {
     private String offer_name;
     private String offer_description;
-    private String offer_discount;
+    private int valid_hours;
 
-    public Offer(String name, String description, String discount) {
+    public Offer(String name, String description, int validHours) {
         offer_name = name;
         offer_description = description;
-        offer_discount = discount;
+        valid_hours = validHours;
     }
 
     public String getOfferName() {
@@ -20,5 +20,9 @@ public class Offer {
 
     public String getOfferDescription() {
         return offer_description;
+    }
+
+    public int getValidHours() {
+        return valid_hours;
     }
 }

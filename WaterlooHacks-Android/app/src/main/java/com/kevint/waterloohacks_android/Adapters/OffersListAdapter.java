@@ -24,6 +24,7 @@ public class OffersListAdapter extends ArrayAdapter<Offer> {
         super(context, resource);
         this.context = context;
         this.offers = offers;
+        fillOfferList();
     }
 
     @Override
@@ -32,24 +33,35 @@ public class OffersListAdapter extends ArrayAdapter<Offer> {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.activity_main, null);
+            v = vi.inflate(R.layout.offer_layout, null);
         }
 
-        Offer p = getItem(position);
+        Offer offer = getItem(position);
 
-        if (p != null) {
+        if (offer != null) {
             TextView offerName = (TextView) v.findViewById(R.id.offer_name);
             TextView offerDescription = (TextView) v.findViewById(R.id.offer_description);
+            TextView offerHours = (TextView) v.findViewById(R.id.valid_hours);
 
             if (offerName != null) {
-                offerName.setText(p.getOfferName());
+                offerName.setText(offer.getOfferName());
             }
 
             if (offerDescription != null) {
-                offerDescription.setText(p.getOfferDescription());
+                offerDescription.setText(offer.getOfferDescription());
+            }
+
+            if (offerHours != null) {
+                offerHours.setText(offer.getValidHours()+" hours");
             }
         }
 
         return v;
+    }
+
+    private void fillOfferList() {
+        for(int i = 0; i < offers.size(); i++) {
+            insert(offers.get(i), 0);
+        }
     }
 }
