@@ -1,5 +1,7 @@
 package com.kevint.waterloohacks_android.Activities;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -62,9 +64,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void populateOfferList() {
-        Offer offer1 = new Offer("Apple sale", "Pick up apples for $1 each.", 1);
-        Offer offer2 = new Offer("Cereal sale", "Grab two 900g cereal boxes for $5", 2);
-        Offer offer3 = new Offer("Fish sale", "Buy 2 Tilapia fillets for $4", 2);
+        Bitmap offerImage1 = BitmapFactory.decodeResource(getResources(), R.drawable.apples);
+        Bitmap offerImage2 = BitmapFactory.decodeResource(getResources(), R.drawable.cereal);
+        Bitmap offerImage3 = BitmapFactory.decodeResource(getResources(), R.drawable.tilapia);
+        Offer offer1 = new Offer("Apple sale", "Pick up apples for $1 each.", 1, offerImage1);
+        Offer offer2 = new Offer("Cereal sale", "Grab two 900g cereal boxes for $5", 2, offerImage2);
+        Offer offer3 = new Offer("Fish sale", "Buy 2 Tilapia fillets for $4", 2, offerImage3);
         offers = new ArrayList<>();
         offers.add(offer1);
         offers.add(offer2);

@@ -9,7 +9,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/apples"
+            android:id="@+id/offer_image"
             android:scaleType="centerCrop"/>
     </RelativeLayout>
 
@@ -19,7 +19,6 @@
         android:text="offer name"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:textColor="@color/black"
         android:id="@+id/offer_name"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"/>
@@ -29,7 +28,6 @@
         android:layout_height="wrap_content"
         android:text="offer description"
         android:textSize="18sp"
-        android:textColor="@color/black"
         android:id="@+id/offer_description"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/offer_name"
@@ -40,7 +38,6 @@
         android:layout_height="wrap_content"
         android:text="valid for: "
         android:textSize="16sp"
-        android:textColor="@color/black"
         android:id="@+id/valid_label"
         android:layout_alignTop="@+id/offer_name"
         android:layout_toStartOf="@+id/valid_hours" />
@@ -50,7 +47,6 @@
         android:layout_height="wrap_content"
         android:text="0 hours"
         android:textSize="16sp"
-        android:textColor="@color/black"
         android:id="@+id/valid_hours"
         android:layout_alignTop="@+id/valid_label"
         android:layout_alignParentEnd="true"
