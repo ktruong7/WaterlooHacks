@@ -1,7 +1,9 @@
 package com.kevint.waterloohacks_android.Activities;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import info.androidhive.slidingmenu.adapter.NavDrawerListAdapter;
@@ -57,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
+    // This broadcast receiver is used to update the activity ui when the phone receives data
+    // from a bluetooth beacon.
+    BroadcastReceiver navDrawerCloserReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         offersListAdapter = new OffersListAdapter(this, android.R.layout.simple_list_item_1, offers);
         offersListView.setAdapter(offersListAdapter);
 
-//        mTitle = mDrawerTitle = getTitle();
         mTitle = mDrawerTitle = "Menu";
 
         // load slide menu items
@@ -110,21 +121,19 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);*/
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ){
             public void onDrawerClosed(View view) {
-//                getSupportActionBar().setTitle(mTitle);
+                getSupportActionBar().setTitle(mTitle);
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-//                getSupportActionBar().setTitle(mDrawerTitle);
+                getSupportActionBar().setTitle(mDrawerTitle);
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
@@ -136,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
             displayView(0);
         }
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.intent.CLOSE_DRAWER");
+        registerReceiver(navDrawerCloserReceiver, filter);
     }
 
     @Override
@@ -168,6 +181,12 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(navDrawerCloserReceiver);
     }
 
     /**
