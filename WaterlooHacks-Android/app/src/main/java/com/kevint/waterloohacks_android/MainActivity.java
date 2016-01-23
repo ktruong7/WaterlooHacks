@@ -34,4 +34,12 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void openProfile(){
+
+    }
+
+    public void openSettings(){
+
+    }
 }
