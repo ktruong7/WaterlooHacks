@@ -1,10 +1,12 @@
 package com.kevint.waterloohacks_android.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kevint.waterloohacks_android.Objects.Offer;
@@ -42,6 +44,7 @@ public class OffersListAdapter extends ArrayAdapter<Offer> {
             TextView offerName = (TextView) v.findViewById(R.id.offer_name);
             TextView offerDescription = (TextView) v.findViewById(R.id.offer_description);
             TextView offerHours = (TextView) v.findViewById(R.id.valid_hours);
+            ImageView offerImageView = (ImageView) v.findViewById(R.id.offer_image);
 
             if (offerName != null) {
                 offerName.setText(offer.getOfferName());
@@ -53,6 +56,10 @@ public class OffersListAdapter extends ArrayAdapter<Offer> {
 
             if (offerHours != null) {
                 offerHours.setText(offer.getValidHours()+" hours");
+            }
+
+            if (offerImageView != null) {
+                offerImageView.setImageBitmap(offer.getOfferImage());
             }
         }
 
