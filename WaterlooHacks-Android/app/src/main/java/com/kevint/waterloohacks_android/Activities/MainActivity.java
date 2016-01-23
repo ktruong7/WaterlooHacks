@@ -169,14 +169,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void openProfile(){
-
-    }
-
-    public void openSettings(){
-
-    }
-
     /**
      * Slide menu item click listener
      * */
