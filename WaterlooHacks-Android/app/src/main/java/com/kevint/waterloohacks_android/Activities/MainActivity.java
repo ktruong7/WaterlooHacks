@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
@@ -117,13 +118,13 @@ public class MainActivity extends AppCompatActivity {
                 R.string.app_name // nav drawer close - description for accessibility
         ){
             public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle(mTitle);
+//                getSupportActionBar().setTitle(mTitle);
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(mDrawerTitle);
+//                getSupportActionBar().setTitle(mDrawerTitle);
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 invalidateOptionsMenu();
             }
@@ -226,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("MainActivity", "Error in creating fragment");
         }
     }
+
     private void populateOfferList() {
         Bitmap offerImage1 = BitmapFactory.decodeResource(getResources(), R.drawable.apples);
         Bitmap offerImage2 = BitmapFactory.decodeResource(getResources(), R.drawable.cereal);
