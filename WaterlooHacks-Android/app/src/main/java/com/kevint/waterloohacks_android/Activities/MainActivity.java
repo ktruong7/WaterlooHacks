@@ -107,9 +107,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         offerIds = new HashSet<>();
         offersListView = (ListView) findViewById(R.id.offers_list);
         offers = new ArrayList<>();
-//        populateOfferList();
         offersListAdapter = new OffersListAdapter(this, android.R.layout.simple_list_item_1, offers);
         offersListView.setAdapter(offersListAdapter);
+        populateOfferList();
 
         offersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -379,15 +379,15 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     }
 
     private void populateOfferList() {
-        Bitmap offerImage1 = BitmapFactory.decodeResource(getResources(), R.drawable.apples);
-        Bitmap offerImage2 = BitmapFactory.decodeResource(getResources(), R.drawable.cereal);
-        Bitmap offerImage3 = BitmapFactory.decodeResource(getResources(), R.drawable.tilapia);
-        Offer offer1 = new Offer("Apple sale", "Pick up apples for $1 each.", 1, offerImage1);
-        Offer offer2 = new Offer("Cereal sale", "Grab two 900g cereal boxes for $5", 2, offerImage2);
-        Offer offer3 = new Offer("Fish sale", "Buy 2 Tilapia fillets for $4", 2, offerImage3);
-        offers.add(offer1);
-        offers.add(offer2);
-        offers.add(offer3);
+//        Bitmap offerImage1 = BitmapFactory.decodeResource(getResources(), R.drawable.apples);
+//        Bitmap offerImage2 = BitmapFactory.decodeResource(getResources(), R.drawable.cereal);
+//        Bitmap offerImage3 = BitmapFactory.decodeResource(getResources(), R.drawable.tilapia);
+//        Offer offer1 = new Offer("Apple sale", "Pick up apples for $1 each.", 1, offerImage1);
+        Offer offer2 = new Offer("Cereal sale", "Grab two 900g cereal boxes for $5", 2, R.drawable.cereal, 13);
+//        Offer offer3 = new Offer("Fish sale", "Buy 2 Tilapia fillets for $4", 2, offerImage3);
+//        offers.add(offer1);
+        offersListAdapter.add(offer2);
+//        offers.add(offer3);
     }
 
     private void setUpBluetoothBeacon() {
