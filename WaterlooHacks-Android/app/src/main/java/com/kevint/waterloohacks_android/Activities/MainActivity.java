@@ -28,12 +28,14 @@ import android.content.res.Configuration;
 
 import com.kevint.waterloohacks_android.Adapters.OffersListAdapter;
 import com.kevint.waterloohacks_android.Objects.Offer;
+import com.kevint.waterloohacks_android.Objects.OfferMapper;
 import com.kevint.waterloohacks_android.R;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
+import org.altbeacon.beacon.Identifier;
 import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
@@ -84,7 +86,11 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     BroadcastReceiver beaconReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println(intent.getStringExtra("message"));
+            Offer offer = OfferMapper.getInstance().getOffer(intent.getIntExtra("offerId", 1000));
+            Bitmap offerImage = BitmapFactory.decodeResource(getResources(), offer.getImageByID());
+            offer.setImageBitmap(offerImage);
+            offersListAdapter.add(offer);
+            offersListAdapter.notifyDataSetChanged();
         }
     };
 
@@ -217,8 +223,30 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             @Override
             public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
                 if (beacons.size() > 0) {
-                    Log.i(TAG, "The first beacon I see is about "+beacons.iterator().next().getDistance()+" meters away.");
-                    broadcastIntent("The first beacon I see is about " + beacons.iterator().next().getDistance()+" meters away.");
+//                    Log.i(TAG, "The first beacon I see is about "+beacons.iterator().next().getDistance()+" meters away.");
+                    ArrayList<Beacon> beaconsList = (ArrayList<Beacon>) beacons;
+                    int index = 0;
+                    double shortestDistance = 1000;
+                    Beacon nearestBeacon = beaconsList.get(0);
+                    while(index < beacons.size()) {
+                        Beacon beacon = beaconsList.get(index);
+                        Identifier id1 = beacon.getId1();
+                        String hexId = id1.toHexString();
+                        if (hexId.equals("0xa77a1b6849a74dbf914c760d07fbb8aa")) {
+                            double distance = beacon.getDistance();
+                            if (distance < shortestDistance) {
+                                nearestBeacon = beacon;
+                                shortestDistance = distance;
+                            }
+                        };
+                        index++;
+                    }
+                    if(nearestBeacon != null && nearestBeacon.getId1().toHexString().equals("0xa77a1b6849a74dbf914c760d07fbb8aa")) {
+                        String id3 = nearestBeacon.getId3().toHexString();
+                    }
+                    // TODO: Extract id3 from the nearest beacon and perform a look up from the offerMapper
+                    // to add the new offer to the listview.
+//                    broadcastIntent("The first beacon I see is about " + beacons.iterator().next().getDistance()+" meters away.");
                 }
             }
         });
@@ -227,19 +255,19 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             @Override
             public void didEnterRegion(Region region) {
                 Log.i(TAG, "I just saw an beacon for the first time!");
-                broadcastIntent("Detected a beacon with id: " + region.getUniqueId());
+//                broadcastIntent("Detected a beacon with id: " + region.getUniqueId());
             }
 
             @Override
             public void didExitRegion(Region region) {
                 Log.i(TAG, "I no longer see an beacon");
-                broadcastIntent("Lost signal to beacon with id: " + region.getUniqueId());
+//                broadcastIntent("Lost signal to beacon with id: " + region.getUniqueId());
             }
 
             @Override
             public void didDetermineStateForRegion(int state, Region region) {
                 Log.i(TAG, "I have just switched from seeing/not seeing beacons: " + state);
-                broadcastIntent("I have just switched from seeing/not seeing beacons: " + state);
+//                broadcastIntent("I have just switched from seeing/not seeing beacons: " + state);
             }
         });
 
@@ -337,11 +365,11 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         registerReceiver(beaconReceiver, filter);
     }
 
-    public void broadcastIntent(String message)
+    public void broadcastIntent(int offerId)
     {
         Intent intent = new Intent();
         intent.setAction("com.intent.BEACON_INTENT");
-        intent.putExtra("message", message);
+        intent.putExtra("offerId", offerId);
         sendBroadcast(intent);
     }
 
