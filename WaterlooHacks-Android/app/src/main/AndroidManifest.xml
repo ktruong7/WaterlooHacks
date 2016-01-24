@@ -17,6 +17,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <receiver android:name="navDrawerCloserReceiver">
+                <intent-filter>
+                    <action android:name="com.intent.CLOSE_DRAWER">
+                    </action>
+                </intent-filter>
+            </receiver>
+            <receiver android:name="beaconReceiver">
+                <intent-filter>
+                    <action android:name="com.intent.BEACON_INTENT">
+                    </action>
+                </intent-filter>
+            </receiver>
         </activity>
         <activity
             android:name=".Activities.BluetoothBeaconActivity"
@@ -26,7 +38,6 @@
                     <action android:name="com.intent.MESSAGE_INTENT">
                     </action>
                 </intent-filter>
-
             </receiver>
         </activity>
         <activity
