@@ -462,15 +462,15 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         if(of != null) {
             if(!offerIds.contains(id)) {
                 offerIds.add(id);
-            }
-            offersListAdapter.insert(of, 0);
-            // Play a notification ringtone
-            try {
-                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-                r.play();
-            } catch (Exception e) {
-                e.printStackTrace();
+                offersListAdapter.insert(of, 0);
+                // Play a notification ringtone
+                try {
+                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                    r.play();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

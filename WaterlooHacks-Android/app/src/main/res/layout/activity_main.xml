@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:text="Test Beacon"
             android:onClick="testBeacon"
+            android:visibility="gone"
             />
     </LinearLayout>
 
