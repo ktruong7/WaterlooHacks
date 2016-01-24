@@ -24,7 +24,7 @@ public class OfferMapper {
         offerMap.put(1003, ofr);
         ofr = new Offer("Battery Sale","desc",23,R.drawable.duracell);
         offerMap.put(1004, ofr);
-        ofr = new Offer("Produce Sale","desc",32,R.drawable.fruits_in_gardens);
+        ofr = new Offer("Produce Sale","desc",32,R.drawable.fruitsingardens);
         offerMap.put(1005, ofr);
         ofr = new Offer("Light Bulb Sale","desc",48,R.drawable.lightbulbs);
         offerMap.put(1006, ofr);
