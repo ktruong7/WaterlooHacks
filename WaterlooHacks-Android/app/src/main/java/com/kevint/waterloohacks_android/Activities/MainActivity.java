@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                                 nearestBeacon = beacon;
                                 shortestDistance = distance;
                             }
-                        };
+                        }
                         index++;
                     }
                     if(nearestBeacon != null && nearestBeacon.getId1().toHexString().equals("0xa77a1b6849a74dbf914c760d07fbb8aa")) {
@@ -250,19 +250,16 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             @Override
             public void didEnterRegion(Region region) {
                 Log.i(TAG, "I just saw an beacon for the first time!");
-//                broadcastIntent("Detected a beacon with id: " + region.getUniqueId());
             }
 
             @Override
             public void didExitRegion(Region region) {
                 Log.i(TAG, "I no longer see an beacon");
-//                broadcastIntent("Lost signal to beacon with id: " + region.getUniqueId());
             }
 
             @Override
             public void didDetermineStateForRegion(int state, Region region) {
                 Log.i(TAG, "I have just switched from seeing/not seeing beacons: " + state);
-//                broadcastIntent("I have just switched from seeing/not seeing beacons: " + state);
             }
         });
 
