@@ -13,6 +13,7 @@ public class Offer {
     private int valid_hours;
     private Bitmap offerImage;
     private int offerImageID;
+    private int offerID;
     /*
 
      */
@@ -23,11 +24,12 @@ public class Offer {
         this.offerImage = offerImage;
     }
 
-    public Offer(String name, String description, int validHours, int offerImgID) {
+    public Offer(String name, String description, int validHours, int offerImgID, int ofID) {
         offer_name = name;
         offer_description = description;
         valid_hours = validHours;
-        this.offerImageID = offerImgID;
+        offerImageID = offerImgID;
+        offerID = ofID;
     }
 
     public String getOfferName() {
@@ -47,4 +49,6 @@ public class Offer {
     }
 
     public int getOfferImageID() { return offerImageID; }
+
+    public int getOfferID(){return offerID;}
 }

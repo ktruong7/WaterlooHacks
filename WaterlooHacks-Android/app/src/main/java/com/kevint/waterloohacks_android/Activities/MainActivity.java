@@ -1,7 +1,9 @@
 package com.kevint.waterloohacks_android.Activities;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -105,6 +107,46 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 //        populateOfferList();
         offersListAdapter = new OffersListAdapter(this, android.R.layout.simple_list_item_1, offers);
         offersListView.setAdapter(offersListAdapter);
+
+        offersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
+
+                // Use the AlertDialog.Builder to configure the AlertDialog.
+                AlertDialog.Builder alertDialogBuilder =
+                        new AlertDialog.Builder(context)
+                                .setTitle("Delete")
+                                .setMessage("Remove this notification?")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        System.out.println("offerIds: " + offerIds.toString());
+                                        System.out.println("offers: " + offers.toString());
+
+                                        offersListAdapter.remove(offersListAdapter.getItem(position));
+                                        offersListAdapter.notifyDataSetChanged();
+
+                                        System.out.println("offerIds: " + offerIds.toString());
+                                        System.out.println("offers: " + offers.toString());
+
+                                        offerIds.remove(offers.get(position).getOfferID());
+                                        offers.remove(position);
+
+                                        System.out.println("offerIds: " + offerIds.toString());
+                                        System.out.println("offers: " + offers.toString());
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // Show the AlertDialog.
+                AlertDialog alertDialog = alertDialogBuilder.show();
+
+            }
+        });
+
         setUpNavMenu(savedInstanceState);
         setUpBluetoothBeacon();
     }
@@ -415,7 +457,6 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     }
 
     public void addOfferFromBeacon(int id){
-        System.out.println("Called");
         OfferMapper om = new OfferMapper(this.context);
         Offer of = om.getOffer(id);
         if(of != null) {

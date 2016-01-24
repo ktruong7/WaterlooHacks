@@ -17,12 +17,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/offers_list" />
 
+        <!-- button for testing the beacon -->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Test Beacon"
             android:onClick="testBeacon"
-            android:visibility="gone"/>
+            />
     </LinearLayout>
 
     <!-- Framelayout to display Fragments -->
