@@ -3,6 +3,7 @@ package com.kevint.waterloohacks_android.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +65,8 @@ public class OffersListAdapter extends ArrayAdapter<Offer> {
             }
 
             if (offerImageView != null) {
-                offerImageView.setImageBitmap(offer.getOfferImage());
+                Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), offer.getOfferImageID());
+                offerImageView.setImageBitmap(bmp);
             }
         }
 

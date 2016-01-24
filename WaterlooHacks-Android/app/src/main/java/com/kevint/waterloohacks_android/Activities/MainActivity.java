@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         setContentView(R.layout.activity_main);
         offerIds = new HashSet<>();
         offersListView = (ListView) findViewById(R.id.offers_list);
-        populateOfferList();
+        offers = new ArrayList<>();
+//        populateOfferList();
         offersListAdapter = new OffersListAdapter(this, android.R.layout.simple_list_item_1, offers);
         offersListView.setAdapter(offersListAdapter);
         setUpNavMenu(savedInstanceState);
@@ -347,7 +348,6 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         Offer offer1 = new Offer("Apple sale", "Pick up apples for $1 each.", 1, offerImage1);
         Offer offer2 = new Offer("Cereal sale", "Grab two 900g cereal boxes for $5", 2, offerImage2);
         Offer offer3 = new Offer("Fish sale", "Buy 2 Tilapia fillets for $4", 2, offerImage3);
-        offers = new ArrayList<>();
         offers.add(offer1);
         offers.add(offer2);
         offers.add(offer3);
@@ -418,9 +418,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         System.out.println("Called");
         OfferMapper om = new OfferMapper(this.context);
         Offer of = om.getOffer(id);
-        System.out.println("Got Offer " + of.getOfferName());
-        offersListAdapter.add(of);
-
+        if(of != null) {
+            offersListAdapter.add(of);
+        }
     }
 
     public void testBeacon(View v)

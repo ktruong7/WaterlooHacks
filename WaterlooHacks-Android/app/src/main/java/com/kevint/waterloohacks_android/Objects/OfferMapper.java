@@ -49,8 +49,13 @@ public class OfferMapper {
 
     // Create and return a new Offer object that actually has a bitmap image
     public Offer getOffer(int id){
-        Offer of = offerMap.get(id);
-        Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), of.getOfferImageID());
-        return new Offer(of.getOfferName(),of.getOfferDescription(),of.getValidHours(),bmp);
+        if(offerMap.containsKey(id)) {
+            Offer of = offerMap.get(id);
+            return of;
+        } else {
+            return null;
+        }
+//        Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), of.getOfferImageID());
+//        return new Offer(of.getOfferName(),of.getOfferDescription(),of.getValidHours(),bmp);
     }
 }
