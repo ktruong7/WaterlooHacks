@@ -28,6 +28,7 @@ import android.content.res.Configuration;
 
 import com.kevint.waterloohacks_android.Adapters.OffersListAdapter;
 import com.kevint.waterloohacks_android.Objects.Offer;
+import com.kevint.waterloohacks_android.Objects.OfferMapper;
 import com.kevint.waterloohacks_android.R;
 
 import org.altbeacon.beacon.Beacon;
@@ -379,5 +380,16 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void addOfferFromBeacon(int id){
+        OfferMapper om = new OfferMapper(this.context);
+        Offer of = om.getOffer(id);
+        offers.add(of);
+    }
+
+    public void testBeacon(View v)
+    {
+      System.out.println("Handler called");
     }
 }
