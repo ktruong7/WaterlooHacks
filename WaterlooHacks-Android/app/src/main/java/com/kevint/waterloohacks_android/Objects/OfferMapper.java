@@ -20,7 +20,7 @@ public class OfferMapper {
         Offer ofr;
 
         // Put the minor IDs that you'll be using from the bluetooth beacon here
-        int[] minorIDs = {1,2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] minorIDs = {1,2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
         // name, description, hours, Bitmap resource ID
         // NOTE: The Offers in the OfferMap don't contain an actual bitmap, only the ID of that bitmap
@@ -45,6 +45,10 @@ public class OfferMapper {
         offerMap.put(minorIDs[8], ofr);
         ofr = new Offer("Stationaries Sale","Nearby discount on stationaries",8,R.drawable.stationary);
         offerMap.put(minorIDs[9], ofr);
+        ofr = new Offer("Apple sale","75 cents for one apple",8,R.drawable.apples);
+        offerMap.put(minorIDs[10], ofr);
+        ofr = new Offer("Fish sale","Buy two Tilapia fillets for $4",8,R.drawable.tilapia);
+        offerMap.put(minorIDs[11], ofr);
     }
 
     // Create and return a new Offer object that actually has a bitmap image

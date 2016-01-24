@@ -419,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         OfferMapper om = new OfferMapper(this.context);
         Offer of = om.getOffer(id);
         if(of != null) {
-            offersListAdapter.add(of);
+            offersListAdapter.insert(of, 0);
         }
     }
 
