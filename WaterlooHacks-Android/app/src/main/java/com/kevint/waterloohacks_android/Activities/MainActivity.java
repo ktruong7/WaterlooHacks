@@ -11,6 +11,7 @@ import info.androidhive.slidingmenu.model.NavDrawerItem;
 import info.androidhive.slidingmenu.HomeFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.os.RemoteException;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,22 +21,28 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.content.res.TypedArray;
 import android.content.res.Configuration;
-import android.widget.Toolbar;
 
 import com.kevint.waterloohacks_android.Adapters.OffersListAdapter;
 import com.kevint.waterloohacks_android.Objects.Offer;
 import com.kevint.waterloohacks_android.R;
 
-import java.util.ArrayList;
+import org.altbeacon.beacon.Beacon;
+import org.altbeacon.beacon.BeaconConsumer;
+import org.altbeacon.beacon.BeaconManager;
+import org.altbeacon.beacon.BeaconParser;
+import org.altbeacon.beacon.MonitorNotifier;
+import org.altbeacon.beacon.RangeNotifier;
+import org.altbeacon.beacon.Region;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class MainActivity extends AppCompatActivity implements BeaconConsumer {
+    protected static final String TAG = "MainActivity";
     private Context context;
 
     private ListView offersListView;
@@ -70,6 +77,17 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private BeaconManager beaconManager;
+
+    // This broadcast receiver is used to update the activity ui when the phone receives data
+    // from a bluetooth beacon.
+    BroadcastReceiver beaconReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println(intent.getStringExtra("message"));
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +97,49 @@ public class MainActivity extends AppCompatActivity {
         populateOfferList();
         offersListAdapter = new OffersListAdapter(this, android.R.layout.simple_list_item_1, offers);
         offersListView.setAdapter(offersListAdapter);
+        setUpNavMenu(savedInstanceState);
+        setUpBluetoothBeacon();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        // toggle nav drawer on selecting action bar app icon/title
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        // Handle action bar actions click
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(navDrawerCloserReceiver);
+    }
+
+    private void setUpNavMenu(Bundle savedInstanceState) {
         mTitle = mDrawerTitle = "Menu";
 
         // load slide menu items
@@ -122,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-               //nav menu toggle icon
+                //nav menu toggle icon
                 R.string.app_name, // nav drawer open - description for accessibility
                 R.string.app_name // nav drawer close - description for accessibility
         ){
@@ -152,41 +212,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    public void onBeaconServiceConnect() {
+        beaconManager.setRangeNotifier(new RangeNotifier() {
+            @Override
+            public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
+                if (beacons.size() > 0) {
+                    Log.i(TAG, "The first beacon I see is about "+beacons.iterator().next().getDistance()+" meters away.");
+                    broadcastIntent("The first beacon I see is about " + beacons.iterator().next().getDistance()+" meters away.");
+                }
+            }
+        });
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        beaconManager.setMonitorNotifier(new MonitorNotifier() {
+            @Override
+            public void didEnterRegion(Region region) {
+                Log.i(TAG, "I just saw an beacon for the first time!");
+                broadcastIntent("Detected a beacon with id: " + region.getUniqueId());
+            }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+            @Override
+            public void didExitRegion(Region region) {
+                Log.i(TAG, "I no longer see an beacon");
+                broadcastIntent("Lost signal to beacon with id: " + region.getUniqueId());
+            }
 
-        // toggle nav drawer on selecting action bar app icon/title
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        // Handle action bar actions click
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+            @Override
+            public void didDetermineStateForRegion(int state, Region region) {
+                Log.i(TAG, "I have just switched from seeing/not seeing beacons: " + state);
+                broadcastIntent("I have just switched from seeing/not seeing beacons: " + state);
+            }
+        });
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(navDrawerCloserReceiver);
+        try {
+            beaconManager.startMonitoringBeaconsInRegion(new Region("myMonitoringUniqueId", null, null, null));
+            beaconManager.startRangingBeaconsInRegion(new Region("myRangingUniqueId", null, null, null));
+        } catch (RemoteException e) {    }
     }
 
     /**
@@ -259,6 +319,32 @@ public class MainActivity extends AppCompatActivity {
         offers.add(offer2);
         offers.add(offer3);
     }
+
+    private void setUpBluetoothBeacon() {
+        // bluetooth beacon setup
+        beaconManager = BeaconManager.getInstanceForApplication(this);
+        // To detect proprietary beacons, you must add a line like below corresponding to your beacon
+        // type.  Do a web search for "setBeaconLayout" to get the proper expression.
+        // beaconManager.getBeaconParsers().add(new BeaconParser().
+        // setBeaconLayout("m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
+        beaconManager.getBeaconParsers().add(new BeaconParser().
+                setBeaconLayout("m:0-3=4c000215,i:4-19,i:20-21,i:22-23,p:24-24"));
+        beaconManager.bind(this);
+
+        // register broadcast receiver
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.intent.BEACON_INTENT");
+        registerReceiver(beaconReceiver, filter);
+    }
+
+    public void broadcastIntent(String message)
+    {
+        Intent intent = new Intent();
+        intent.setAction("com.intent.BEACON_INTENT");
+        intent.putExtra("message", message);
+        sendBroadcast(intent);
+    }
+
     /***
      * Called when invalidateOptionsMenu() is triggered
      */
