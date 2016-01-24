@@ -42,6 +42,8 @@ import org.altbeacon.beacon.Region;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     protected static final String TAG = "MainActivity";
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
 
+    private Set<Integer> offerIds;
+
     // This broadcast receiver is used to update the activity ui when the phone receives data
     // from a bluetooth beacon.
     BroadcastReceiver navDrawerCloserReceiver = new BroadcastReceiver() {
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     BroadcastReceiver beaconReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            addOfferFromBeacon(intent.getIntExtra("offerId", 1));
         }
     };
 
@@ -94,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.activity_main);
+        offerIds = new HashSet<>();
         offersListView = (ListView) findViewById(R.id.offers_list);
         populateOfferList();
         offersListAdapter = new OffersListAdapter(this, android.R.layout.simple_list_item_1, offers);
@@ -138,6 +144,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(navDrawerCloserReceiver);
+        unregisterReceiver(beaconReceiver);
+        beaconManager.unbind(this);
     }
 
     private void setUpNavMenu(Bundle savedInstanceState) {
@@ -233,11 +241,16 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                                 nearestBeacon = beacon;
                                 shortestDistance = distance;
                             }
-                        };
+                        }
                         index++;
                     }
                     if(nearestBeacon != null && nearestBeacon.getId1().toHexString().equals("0xa77a1b6849a74dbf914c760d07fbb8aa")) {
                         String id3 = nearestBeacon.getId3().toHexString();
+                        int offerId = Integer.parseInt(id3.substring(2), 16);
+                        if(!offerIds.contains(offerId)) {
+                            offerIds.add(offerId);
+                            broadcastIntent(offerId);
+                        }
                     }
                     // TODO: Extract id3 from the nearest beacon and perform a look up from the offerMapper
                     // to add the new offer to the listview.
@@ -250,19 +263,16 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             @Override
             public void didEnterRegion(Region region) {
                 Log.i(TAG, "I just saw an beacon for the first time!");
-//                broadcastIntent("Detected a beacon with id: " + region.getUniqueId());
             }
 
             @Override
             public void didExitRegion(Region region) {
                 Log.i(TAG, "I no longer see an beacon");
-//                broadcastIntent("Lost signal to beacon with id: " + region.getUniqueId());
             }
 
             @Override
             public void didDetermineStateForRegion(int state, Region region) {
                 Log.i(TAG, "I have just switched from seeing/not seeing beacons: " + state);
-//                broadcastIntent("I have just switched from seeing/not seeing beacons: " + state);
             }
         });
 
