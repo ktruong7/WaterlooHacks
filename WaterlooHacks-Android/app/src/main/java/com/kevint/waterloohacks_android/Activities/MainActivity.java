@@ -125,17 +125,12 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                                         System.out.println("offerIds: " + offerIds.toString());
                                         System.out.println("offers: " + offers.toString());
 
+                                        int offerId = offersListAdapter.getItem(position).getOfferID();
                                         offersListAdapter.remove(offersListAdapter.getItem(position));
                                         offersListAdapter.notifyDataSetChanged();
-
-                                        System.out.println("offerIds: " + offerIds.toString());
-                                        System.out.println("offers: " + offers.toString());
-
-                                        offerIds.remove(offers.get(position).getOfferID());
-                                        offers.remove(position);
-
-                                        System.out.println("offerIds: " + offerIds.toString());
-                                        System.out.println("offers: " + offers.toString());
+                                        if(offerIds.contains(offerId)) {
+                                            offerIds.remove(offerId);
+                                        }
                                     }
                                 })
                                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
