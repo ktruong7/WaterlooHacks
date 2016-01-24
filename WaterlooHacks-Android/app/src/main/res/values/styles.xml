@@ -7,4 +7,6 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="light_grey">#e3e3e3</color>
+    <color name="price_red">#FF0000</color>
+    <color name="price_green">#2FBF2A</color>
 </resources>
