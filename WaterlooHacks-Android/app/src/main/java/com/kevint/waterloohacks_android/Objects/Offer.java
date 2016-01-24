@@ -12,7 +12,7 @@ public class Offer {
     private String offer_description;
     private int valid_hours;
     private Bitmap offerImage;
-
+    private int offerImageID;
     /*
 
      */
@@ -23,11 +23,11 @@ public class Offer {
         this.offerImage = offerImage;
     }
 
-    public Offer(String name, String description, int validHours, int offerImageID, Context context) {
+    public Offer(String name, String description, int validHours, int offerImgID) {
         offer_name = name;
         offer_description = description;
         valid_hours = validHours;
-        this.offerImage = BitmapFactory.decodeResource(context.getResources(), offerImageID);
+        this.offerImageID = offerImgID;
     }
 
     public String getOfferName() {
@@ -45,4 +45,6 @@ public class Offer {
     public Bitmap getOfferImage() {
         return offerImage;
     }
+
+    public int getOfferImageID() { return offerImageID; }
 }
