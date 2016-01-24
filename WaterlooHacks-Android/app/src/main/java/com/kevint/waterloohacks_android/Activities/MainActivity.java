@@ -384,12 +384,12 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
     public void addOfferFromBeacon(int id){
         OfferMapper om = new OfferMapper(this.context);
-        Offer of = om.getOffer(id);
-        offers.add(of);
+        //Offer of = om.getOffer(id);
+        //offers.add(of);
     }
 
     public void testBeacon(View v)
     {
-      System.out.println("Handler called");
+      addOfferFromBeacon(1);
     }
 }

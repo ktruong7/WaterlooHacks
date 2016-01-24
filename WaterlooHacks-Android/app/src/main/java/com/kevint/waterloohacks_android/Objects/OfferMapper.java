@@ -16,17 +16,7 @@ public class OfferMapper {
         Offer ofr;
 
         // Put the minor IDs that you'll be using from the bluetooth beacon here
-        int[] minorIDs = {
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-        };
+        int[] minorIDs = {1,2, 3, 4, 5, 6, 7, 8, 9};
                         // name, description, hours, Bitmap resource ID
         ofr = new Offer("Auto parts Sale","Nearby discount on auto parts",11, R.drawable.autoparts, context);
         offerMap.put(minorIDs[0], ofr);
