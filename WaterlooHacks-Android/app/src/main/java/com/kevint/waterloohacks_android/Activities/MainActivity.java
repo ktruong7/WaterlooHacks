@@ -290,10 +290,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                     if(nearestBeacon != null && nearestBeacon.getId1().toHexString().equals("0xa77a1b6849a74dbf914c760d07fbb8aa")) {
                         String id3 = nearestBeacon.getId3().toHexString();
                         int offerId = Integer.parseInt(id3.substring(2), 16);
-                        if(!offerIds.contains(offerId)) {
-                            offerIds.add(offerId);
-                            broadcastIntent(offerId);
-                        }
+                        broadcastIntent(offerId);
                     }
                     // TODO: Extract id3 from the nearest beacon and perform a look up from the offerMapper
                     // to add the new offer to the listview.
@@ -460,6 +457,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         OfferMapper om = new OfferMapper(this.context);
         Offer of = om.getOffer(id);
         if(of != null) {
+            if(!offerIds.contains(id)) {
+                offerIds.add(id);
+            }
             offersListAdapter.insert(of, 0);
         }
     }
