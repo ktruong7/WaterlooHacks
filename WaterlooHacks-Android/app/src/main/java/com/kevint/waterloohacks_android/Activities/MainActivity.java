@@ -86,11 +86,6 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     BroadcastReceiver beaconReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Offer offer = OfferMapper.getInstance().getOffer(intent.getIntExtra("offerId", 1000));
-            Bitmap offerImage = BitmapFactory.decodeResource(getResources(), offer.getImageByID());
-            offer.setImageBitmap(offerImage);
-            offersListAdapter.add(offer);
-            offersListAdapter.notifyDataSetChanged();
         }
     };
 
@@ -407,5 +402,16 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    public void addOfferFromBeacon(int id){
+        OfferMapper om = new OfferMapper(this.context);
+        Offer of = om.getOffer(id);
+        offers.add(of);
+    }
+
+    public void testBeacon(View v)
+    {
+      System.out.println("Handler called");
     }
 }

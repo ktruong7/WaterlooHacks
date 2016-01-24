@@ -1,7 +1,9 @@
 package com.kevint.waterloohacks_android.Objects;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-
+import android.graphics.BitmapFactory;
+import android.view.ContextThemeWrapper;
 /**
  * Created by kevinT on 2016-01-23.
  */
@@ -21,11 +23,11 @@ public class Offer {
         this.offerImage = offerImage;
     }
 
-    public Offer(String name, String description, int validHours, int offerImageID) {
+    public Offer(String name, String description, int validHours, int offerImageID, Context context) {
         offer_name = name;
         offer_description = description;
         valid_hours = validHours;
-        this.offerImage = getImageByID(offerImageID);
+        this.offerImage = BitmapFactory.decodeResource(context.getResources(), offerImageID);
     }
 
     public String getOfferName() {
@@ -42,10 +44,5 @@ public class Offer {
 
     public Bitmap getOfferImage() {
         return offerImage;
-    }
-
-    public Bitmap getImageByID(int id)
-    {
-        return null;
     }
 }
