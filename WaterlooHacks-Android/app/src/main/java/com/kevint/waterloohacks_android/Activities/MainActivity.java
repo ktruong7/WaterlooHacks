@@ -13,6 +13,9 @@ import info.androidhive.slidingmenu.model.NavDrawerItem;
 import info.androidhive.slidingmenu.HomeFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.RemoteException;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -290,10 +293,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                     if(nearestBeacon != null && nearestBeacon.getId1().toHexString().equals("0xa77a1b6849a74dbf914c760d07fbb8aa")) {
                         String id3 = nearestBeacon.getId3().toHexString();
                         int offerId = Integer.parseInt(id3.substring(2), 16);
-                        if(!offerIds.contains(offerId)) {
-                            offerIds.add(offerId);
-                            broadcastIntent(offerId);
-                        }
+                        broadcastIntent(offerId);
                     }
                     // TODO: Extract id3 from the nearest beacon and perform a look up from the offerMapper
                     // to add the new offer to the listview.
@@ -460,7 +460,18 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         OfferMapper om = new OfferMapper(this.context);
         Offer of = om.getOffer(id);
         if(of != null) {
+            if(!offerIds.contains(id)) {
+                offerIds.add(id);
+            }
             offersListAdapter.insert(of, 0);
+            // Play a notification ringtone
+            try {
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                r.play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
