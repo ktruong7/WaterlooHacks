@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "05801D751E842251D5BDF7B1247A21F9EAB6C25E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6543FA08C237D8D8B496BA58175BE804A6A827A7" : 0,
+    "05801D751E842251D5BDF7B1247A21F9EAB6C25E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "320A5AD0-00B0-4D7D-8CF8-7B83D70AC82C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6543FA08C237D8D8B496BA58175BE804A6A827A7" : "_Libraries\/PulsingHalo\/",
+    "05801D751E842251D5BDF7B1247A21F9EAB6C25E" : "WaterlooHacks\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BLEBeacon",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BLEBeacon\/BLEBeacon.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ktruong7\/WaterlooHacks.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "05801D751E842251D5BDF7B1247A21F9EAB6C25E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/shu223\/PulsingHalo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6543FA08C237D8D8B496BA58175BE804A6A827A7"
+    }
+  ]
+}

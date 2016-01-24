@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		558F40361C53EE9900411ACC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F40351C53EE9900411ACC /* main.m */; };
+		558F40391C53EE9900411ACC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F40381C53EE9900411ACC /* AppDelegate.m */; };
+		558F403C1C53EE9900411ACC /* TransmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F403B1C53EE9900411ACC /* TransmitViewController.m */; };
+		558F403F1C53EE9900411ACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558F403D1C53EE9900411ACC /* Main.storyboard */; };
+		558F40411C53EE9900411ACC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558F40401C53EE9900411ACC /* Assets.xcassets */; };
+		558F40441C53EE9900411ACC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 558F40421C53EE9900411ACC /* LaunchScreen.storyboard */; };
+		558F404D1C53F01100411ACC /* BLETransmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 558F404C1C53F01100411ACC /* BLETransmitter.m */; };
+		55EDC6871C54147400B83DCF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55EDC6861C54147400B83DCF /* CoreLocation.framework */; };
+		55EDC6891C54147C00B83DCF /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55EDC6881C54147C00B83DCF /* CoreBluetooth.framework */; };
+		55EDC68C1C54566100B83DCF /* BeaconTransmitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EDC68B1C54566100B83DCF /* BeaconTransmitButton.m */; };
+		55EDC6901C547A9A00B83DCF /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EDC68F1C547A9A00B83DCF /* PulsingHaloLayer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		558F40311C53EE9900411ACC /* BLEBeacon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLEBeacon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		558F40351C53EE9900411ACC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		558F40371C53EE9900411ACC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		558F40381C53EE9900411ACC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		558F403A1C53EE9900411ACC /* TransmitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransmitViewController.h; sourceTree = "<group>"; };
+		558F403B1C53EE9900411ACC /* TransmitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransmitViewController.m; sourceTree = "<group>"; };
+		558F403E1C53EE9900411ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		558F40401C53EE9900411ACC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		558F40431C53EE9900411ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		558F40451C53EE9900411ACC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		558F404B1C53F01100411ACC /* BLETransmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLETransmitter.h; sourceTree = "<group>"; };
+		558F404C1C53F01100411ACC /* BLETransmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLETransmitter.m; sourceTree = "<group>"; };
+		55EDC6861C54147400B83DCF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		55EDC6881C54147C00B83DCF /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		55EDC68A1C54566100B83DCF /* BeaconTransmitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconTransmitButton.h; sourceTree = "<group>"; };
+		55EDC68B1C54566100B83DCF /* BeaconTransmitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconTransmitButton.m; sourceTree = "<group>"; };
+		55EDC68E1C547A9A00B83DCF /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PulsingHaloLayer.h; path = ../../../_Libraries/PulsingHalo/PulsingHalo/PulsingHaloLayer.h; sourceTree = "<group>"; };
+		55EDC68F1C547A9A00B83DCF /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = ../../../_Libraries/PulsingHalo/PulsingHalo/PulsingHaloLayer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		558F402E1C53EE9900411ACC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55EDC6891C54147C00B83DCF /* CoreBluetooth.framework in Frameworks */,
+				55EDC6871C54147400B83DCF /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		558F40281C53EE9900411ACC = {
+			isa = PBXGroup;
+			children = (
+				558F40331C53EE9900411ACC /* BLEBeacon */,
+				558F40321C53EE9900411ACC /* Products */,
+				55EDC6941C55037E00B83DCF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		558F40321C53EE9900411ACC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				558F40311C53EE9900411ACC /* BLEBeacon.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		558F40331C53EE9900411ACC /* BLEBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				558F404B1C53F01100411ACC /* BLETransmitter.h */,
+				558F404C1C53F01100411ACC /* BLETransmitter.m */,
+				55EDC6911C55030100B83DCF /* View Controllers */,
+				55EDC6921C55031300B83DCF /* UI Elements */,
+				55EDC68D1C5479DE00B83DCF /* PulsingHalo */,
+				558F40371C53EE9900411ACC /* AppDelegate.h */,
+				558F40381C53EE9900411ACC /* AppDelegate.m */,
+				558F403D1C53EE9900411ACC /* Main.storyboard */,
+				558F40401C53EE9900411ACC /* Assets.xcassets */,
+				558F40421C53EE9900411ACC /* LaunchScreen.storyboard */,
+				558F40451C53EE9900411ACC /* Info.plist */,
+				558F40341C53EE9900411ACC /* Supporting Files */,
+			);
+			path = BLEBeacon;
+			sourceTree = "<group>";
+		};
+		558F40341C53EE9900411ACC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				558F40351C53EE9900411ACC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55EDC68D1C5479DE00B83DCF /* PulsingHalo */ = {
+			isa = PBXGroup;
+			children = (
+				55EDC68E1C547A9A00B83DCF /* PulsingHaloLayer.h */,
+				55EDC68F1C547A9A00B83DCF /* PulsingHaloLayer.m */,
+			);
+			name = PulsingHalo;
+			sourceTree = "<group>";
+		};
+		55EDC6911C55030100B83DCF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				558F403A1C53EE9900411ACC /* TransmitViewController.h */,
+				558F403B1C53EE9900411ACC /* TransmitViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		55EDC6921C55031300B83DCF /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				55EDC68A1C54566100B83DCF /* BeaconTransmitButton.h */,
+				55EDC68B1C54566100B83DCF /* BeaconTransmitButton.m */,
+			);
+			name = "UI Elements";
+			sourceTree = "<group>";
+		};
+		55EDC6941C55037E00B83DCF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55EDC6881C54147C00B83DCF /* CoreBluetooth.framework */,
+				55EDC6861C54147400B83DCF /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		558F40301C53EE9900411ACC /* BLEBeacon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 558F40481C53EE9900411ACC /* Build configuration list for PBXNativeTarget "BLEBeacon" */;
+			buildPhases = (
+				558F402D1C53EE9900411ACC /* Sources */,
+				558F402E1C53EE9900411ACC /* Frameworks */,
+				558F402F1C53EE9900411ACC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BLEBeacon;
+			productName = BLEBeacon;
+			productReference = 558F40311C53EE9900411ACC /* BLEBeacon.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		558F40291C53EE9900411ACC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Abdul Al-Shawa";
+				TargetAttributes = {
+					558F40301C53EE9900411ACC = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 558F402C1C53EE9900411ACC /* Build configuration list for PBXProject "BLEBeacon" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 558F40281C53EE9900411ACC;
+			productRefGroup = 558F40321C53EE9900411ACC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				558F40301C53EE9900411ACC /* BLEBeacon */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		558F402F1C53EE9900411ACC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				558F40441C53EE9900411ACC /* LaunchScreen.storyboard in Resources */,
+				558F40411C53EE9900411ACC /* Assets.xcassets in Resources */,
+				558F403F1C53EE9900411ACC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		558F402D1C53EE9900411ACC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55EDC6901C547A9A00B83DCF /* PulsingHaloLayer.m in Sources */,
+				558F403C1C53EE9900411ACC /* TransmitViewController.m in Sources */,
+				558F40391C53EE9900411ACC /* AppDelegate.m in Sources */,
+				558F40361C53EE9900411ACC /* main.m in Sources */,
+				558F404D1C53F01100411ACC /* BLETransmitter.m in Sources */,
+				55EDC68C1C54566100B83DCF /* BeaconTransmitButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		558F403D1C53EE9900411ACC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				558F403E1C53EE9900411ACC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		558F40421C53EE9900411ACC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				558F40431C53EE9900411ACC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		558F40461C53EE9900411ACC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		558F40471C53EE9900411ACC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		558F40491C53EE9900411ACC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = BLEBeacon/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AAAplications.BLEBeacon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		558F404A1C53EE9900411ACC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = BLEBeacon/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AAAplications.BLEBeacon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		558F402C1C53EE9900411ACC /* Build configuration list for PBXProject "BLEBeacon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				558F40461C53EE9900411ACC /* Debug */,
+				558F40471C53EE9900411ACC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		558F40481C53EE9900411ACC /* Build configuration list for PBXNativeTarget "BLEBeacon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				558F40491C53EE9900411ACC /* Debug */,
+				558F404A1C53EE9900411ACC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 558F40291C53EE9900411ACC /* Project object */;
+}
